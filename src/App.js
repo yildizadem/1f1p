@@ -1,25 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav } from 'mdbreact';
+import Anasayfa from './pages/Anasayfa';
+import Basvuru from './pages/Basvuru';
+import DahaFazla from './pages/DahaFazla';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <MDBNavbar color="indigo" dark expand="md">
+        <MDBNavbarBrand>
+          <strong className="white-text">Bir Fikir Bir Proje</strong>
+        </MDBNavbarBrand>
+        <MDBNavbarNav right>
+          <Link to="/" className="btn btn-outline-default">Anasayfa</Link>
+          <Link to="/basvuru-yap" className="btn btn-outline-danger">Başvuru Yap</Link>
+        </MDBNavbarNav>
+      </MDBNavbar>
+      <Switch>
+        <Route path="/basvuru-yap">
+          <Basvuru />
+        </Route>
+        <Route path="/daha-fazla">
+          <DahaFazla />
+        </Route>
+        <Route path="/">
+          <Anasayfa />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
